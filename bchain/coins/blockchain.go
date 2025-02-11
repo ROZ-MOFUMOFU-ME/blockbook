@@ -35,6 +35,7 @@ import (
 	"github.com/trezor/blockbook/bchain/coins/gamecredits"
 	"github.com/trezor/blockbook/bchain/coins/grs"
 	"github.com/trezor/blockbook/bchain/coins/koto"
+	"github.com/trezor/blockbook/bchain/coins/kumacoin"
 	"github.com/trezor/blockbook/bchain/coins/liquid"
 	"github.com/trezor/blockbook/bchain/coins/litecoin"
 	"github.com/trezor/blockbook/bchain/coins/monacoin"
@@ -109,6 +110,8 @@ func init() {
 	BlockChainFactories["Groestlcoin Testnet"] = grs.NewGroestlcoinRPC
 	BlockChainFactories["Groestlcoin Signet"] = grs.NewGroestlcoinRPC
 	BlockChainFactories["Groestlcoin Regtest"] = grs.NewGroestlcoinRPC
+	BlockChainFactories["Kumacoin"] = kumacoin.NewKumacoinRPC
+	BlockChainFactories["Kumacoin Testnet"] = kumacoin.NewKumacoinRPC
 	BlockChainFactories["PIVX"] = pivx.NewPivXRPC
 	BlockChainFactories["PIVX Testnet"] = pivx.NewPivXRPC
 	BlockChainFactories["Polis"] = polis.NewPolisRPC
