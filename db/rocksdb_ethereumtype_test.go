@@ -409,8 +409,8 @@ func TestRocksDB_Index_EthereumType(t *testing.T) {
 	}
 	verifyAfterEthereumTypeBlock1(t, d, false)
 
-	if len(d.is.BlockTimes) != 1 {
-		t.Fatal("Expecting is.BlockTimes 1, got ", len(d.is.BlockTimes))
+	if len(d.is.BlockTimes) != 4321001 {
+		t.Fatal("Expecting is.BlockTimes 4321001, got ", len(d.is.BlockTimes))
 	}
 
 	// connect 2nd block, simulate InternalDataError and AddressAlias
@@ -421,8 +421,8 @@ func TestRocksDB_Index_EthereumType(t *testing.T) {
 	verifyAfterEthereumTypeBlock2(t, d, true)
 	block2.CoinSpecificData = nil
 
-	if len(d.is.BlockTimes) != 2 {
-		t.Fatal("Expecting is.BlockTimes 2, got ", len(d.is.BlockTimes))
+	if len(d.is.BlockTimes) != 4321002 {
+		t.Fatal("Expecting is.BlockTimes 4321002, got ", len(d.is.BlockTimes))
 	}
 
 	// get transactions for various addresses / low-high ranges
@@ -551,8 +551,8 @@ func TestRocksDB_Index_EthereumType(t *testing.T) {
 		}
 	}
 
-	if len(d.is.BlockTimes) != 1 {
-		t.Fatal("Expecting is.BlockTimes 1, got ", len(d.is.BlockTimes))
+	if len(d.is.BlockTimes) != 4321001 {
+		t.Fatal("Expecting is.BlockTimes 4321001, got ", len(d.is.BlockTimes))
 	}
 
 	// connect block again and verify the state of db
@@ -561,8 +561,8 @@ func TestRocksDB_Index_EthereumType(t *testing.T) {
 	}
 	verifyAfterEthereumTypeBlock2(t, d, false)
 
-	if len(d.is.BlockTimes) != 2 {
-		t.Fatal("Expecting is.BlockTimes 2, got ", len(d.is.BlockTimes))
+	if len(d.is.BlockTimes) != 4321002 {
+		t.Fatal("Expecting is.BlockTimes 4321002, got ", len(d.is.BlockTimes))
 	}
 
 }
@@ -1150,11 +1150,11 @@ func Test_packUnpackBlockTx(t *testing.T) {
 				to:    addressToAddrDesc(dbtestdata.EthAddr55, parser),
 				contracts: []ethBlockTxContract{
 					{
-						from:         addressToAddrDesc(dbtestdata.EthAddr20, parser),
-						to:           addressToAddrDesc(dbtestdata.EthAddr5d, parser),
-						contract:     addressToAddrDesc(dbtestdata.EthAddrContract4a, parser),
-						transferType: bchain.FungibleToken,
-						value:        *big.NewInt(10000),
+						from:             addressToAddrDesc(dbtestdata.EthAddr20, parser),
+						to:               addressToAddrDesc(dbtestdata.EthAddr5d, parser),
+						contract:         addressToAddrDesc(dbtestdata.EthAddrContract4a, parser),
+						transferStandard: bchain.FungibleToken,
+						value:            *big.NewInt(10000),
 					},
 				},
 			},
@@ -1168,24 +1168,24 @@ func Test_packUnpackBlockTx(t *testing.T) {
 				to:    addressToAddrDesc(dbtestdata.EthAddr55, parser),
 				contracts: []ethBlockTxContract{
 					{
-						from:         addressToAddrDesc(dbtestdata.EthAddr20, parser),
-						to:           addressToAddrDesc(dbtestdata.EthAddr3e, parser),
-						contract:     addressToAddrDesc(dbtestdata.EthAddrContract4a, parser),
-						transferType: bchain.FungibleToken,
-						value:        *big.NewInt(987654321),
+						from:             addressToAddrDesc(dbtestdata.EthAddr20, parser),
+						to:               addressToAddrDesc(dbtestdata.EthAddr3e, parser),
+						contract:         addressToAddrDesc(dbtestdata.EthAddrContract4a, parser),
+						transferStandard: bchain.FungibleToken,
+						value:            *big.NewInt(987654321),
 					},
 					{
-						from:         addressToAddrDesc(dbtestdata.EthAddr4b, parser),
-						to:           addressToAddrDesc(dbtestdata.EthAddr55, parser),
-						contract:     addressToAddrDesc(dbtestdata.EthAddrContract6f, parser),
-						transferType: bchain.NonFungibleToken,
-						value:        *big.NewInt(13),
+						from:             addressToAddrDesc(dbtestdata.EthAddr4b, parser),
+						to:               addressToAddrDesc(dbtestdata.EthAddr55, parser),
+						contract:         addressToAddrDesc(dbtestdata.EthAddrContract6f, parser),
+						transferStandard: bchain.NonFungibleToken,
+						value:            *big.NewInt(13),
 					},
 					{
-						from:         addressToAddrDesc(dbtestdata.EthAddr5d, parser),
-						to:           addressToAddrDesc(dbtestdata.EthAddr7b, parser),
-						contract:     addressToAddrDesc(dbtestdata.EthAddrContractCd, parser),
-						transferType: bchain.MultiToken,
+						from:             addressToAddrDesc(dbtestdata.EthAddr5d, parser),
+						to:               addressToAddrDesc(dbtestdata.EthAddr7b, parser),
+						contract:         addressToAddrDesc(dbtestdata.EthAddrContractCd, parser),
+						transferStandard: bchain.MultiToken,
 						idValues: []bchain.MultiTokenValue{
 							{
 								Id:    *big.NewInt(1234),
